@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="Выбери, как твой герой попадёт в Башню Бога.">
+  <title>Башня Бога — Вход</title>
+  <style>
+    :root {
+      --ink: #eef2f7;
+      --muted: #a7b0bd;
+      --faint: #687383;
+      --bg: #080b12;
+      --surface: #10151e;
+      --surface-2: #151c27;
+      --line: rgba(214, 224, 236, .13);
+      --gold: #e9bd69;
+      --gold-soft: #f7dba0;
+      --blue: #85b9d7;
+      --blue-deep: #24475f;
+      --red: #cc8b83;
+      --green: #92c7ab;
+      --shadow: 0 28px 80px rgba(0, 0, 0, .34);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 78% 7%, rgba(70, 113, 143, .17), transparent 31rem),
+        radial-gradient(circle at 10% 38%, rgba(192, 137, 56, .09), transparent 27rem),
+        var(--bg);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .25;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
+      mix-blend-mode: screen;
+    }
+    a { color: inherit; }
+    button, input, textarea { font: inherit; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      padding: 26px 0 20px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted); font: 12px/1.2 "Trebuchet MS", sans-serif;
+      letter-spacing: .14em; text-transform: uppercase;
+    }
+    .mark { display: inline-flex; align-items: center; gap: 11px; color: var(--gold-soft); }
+    .sigil {
+      width: 24px; height: 24px; display: grid; place-items: center;
+      border: 1px solid var(--gold); transform: rotate(45deg);
+    }
+    .sigil::after { content: ""; width: 7px; height: 7px; border: 1px solid var(--gold); }
+    .sigil > * { transform: rotate(-45deg); }
+    .topbar a { text-decoration: none; }
+    .hero {
+      min-height: 650px; display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(300px, .96fr);
+      align-items: center; gap: 64px; padding: 86px 0 84px;
+    }
+    .eyebrow {
+      margin: 0 0 22px; color: var(--gold); font: 12px/1.2 "Trebuchet MS", sans-serif;
+      letter-spacing: .2em; text-transform: uppercase;
+    }
+    h1 { max-width: 700px; margin: 0; font-size: clamp(54px, 8vw, 104px); line-height: .93; font-weight: 400; letter-spacing: -.045em; }
+    h1 em { color: var(--gold-soft); font-style: normal; }
+    .lead { max-width: 590px; margin: 30px 0 0; color: var(--muted); font-size: clamp(18px, 2.1vw, 23px); line-height: 1.5; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .button {
+      min-height: 46px; padding: 11px 18px; border: 1px solid var(--line); border-radius: 2px;
+      color: var(--ink); background: rgba(255,255,255,.03); cursor: pointer; text-decoration: none;
+      font: 12px/1.2 "Trebuchet MS", sans-serif; letter-spacing: .11em; text-transform: uppercase;
+      transition: border-color .2s ease, background .2s ease, transform .2s ease;
+    }
+    .button:hover, .button:focus-visible { border-color: var(--gold); background: rgba(233,189,105,.09); transform: translateY(-2px); outline: none; }
+    .button.primary { border-color: var(--gold); color: #17120b; background: var(--gold); }
+    .button.primary:hover, .button.primary:focus-visible { background: var(--gold-soft); }
+    .tower {
+      position: relative; min-height: 470px; display: grid; place-items: center;
+    }
+    .tower::before { content: ""; position: absolute; width: 1px; height: 100%; background: linear-gradient(transparent, var(--gold), transparent); opacity: .28; }
+    .spire { position: relative; width: min(260px, 68%); height: 430px; }
+    .spire .level { position: absolute; left: 50%; transform: translateX(-50%); border: 1px solid rgba(233,189,105,.52); background: linear-gradient(90deg, transparent, rgba(233,189,105,.10), transparent); }
+    .level:nth-child(1) { top: 2%; width: 42px; height: 22px; }
+    .level:nth-child(2) { top: 14%; width: 88px; height: 42px; }
+    .level:nth-child(3) { top: 29%; width: 132px; height: 70px; }
+    .level:nth-child(4) { top: 50%; width: 184px; height: 92px; }
+    .level:nth-child(5) { top: 76%; width: 244px; height: 86px; }
+    .spire::after { content: ""; position: absolute; inset: 0 50%; border-left: 1px solid rgba(133,185,215,.35); box-shadow: 0 0 36px rgba(133,185,215,.12); }
+    .tower-note { position: absolute; right: 0; bottom: 8%; max-width: 190px; color: var(--faint); font-size: 15px; line-height: 1.4; }
+    .tower-note strong { display: block; margin-bottom: 8px; color: var(--blue); font: 11px/1.2 "Trebuchet MS", sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+    section { padding: 86px 0; border-top: 1px solid var(--line); }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 34px; }
+    h2 { margin: 0; font-size: clamp(32px, 5vw, 56px); line-height: 1; font-weight: 400; letter-spacing: -.035em; }
+    .section-head p { max-width: 400px; margin: 0; color: var(--muted); }
+    .choices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .choice {
+      position: relative; display: flex; flex-direction: column; min-height: 480px; padding: 28px;
+      border: 1px solid var(--line); background: linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+      transition: border-color .2s ease, background .2s ease, transform .2s ease; cursor: pointer;
+    }
+    .choice:hover, .choice:focus-within, .choice.selected { border-color: var(--gold); background: linear-gradient(145deg, rgba(233,189,105,.11), rgba(255,255,255,.025)); transform: translateY(-4px); }
+    .choice.selected::before { content: "Выбрано"; position: absolute; right: 18px; top: 18px; color: var(--gold); font: 10px/1 "Trebuchet MS", sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+    .choice-no { color: var(--gold); font: 12px/1 "Trebuchet MS", sans-serif; letter-spacing: .16em; }
+    .choice h3 { margin: 22px 0 13px; font-size: 31px; line-height: 1.05; font-weight: 400; }
+    .choice .tagline { min-height: 50px; margin: 0; color: var(--blue); font-size: 16px; }
+    .choice > p:not(.tagline) { color: var(--muted); font-size: 16px; }
+    .choice ul { margin: auto 0 22px; padding: 20px 0 0 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+    .choice li { margin: 6px 0; }
+    .choice button { align-self: flex-start; }
+    .form-section { display: grid; grid-template-columns: .78fr 1.22fr; gap: 64px; align-items: start; }
+    .form-intro p { color: var(--muted); font-size: 17px; }
+    .form-intro .small { color: var(--faint); font-size: 14px; }
+    form { display: grid; gap: 17px; }
+    label { display: grid; gap: 7px; color: var(--muted); font: 11px/1.2 "Trebuchet MS", sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+    input, textarea { width: 100%; border: 1px solid var(--line); border-radius: 0; padding: 13px 14px; color: var(--ink); background: rgba(0,0,0,.2); outline: none; font: 17px/1.4 Georgia, serif; }
+    textarea { min-height: 112px; resize: vertical; }
+    input:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(233,189,105,.10); }
+    .selected-type { color: var(--gold-soft); font-size: 19px; text-transform: none; letter-spacing: 0; }
+    .form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+    .status { min-height: 20px; color: var(--green); font: 12px/1.3 "Trebuchet MS", sans-serif; letter-spacing: .04em; }
+    .questions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .question { padding: 25px; background: var(--surface); }
+    .question .q { margin-bottom: 9px; color: var(--gold-soft); font-size: 22px; }
+    .question p { margin: 0; color: var(--muted); font-size: 15px; }
+    footer { padding: 30px 0 42px; border-top: 1px solid var(--line); color: var(--faint); font: 11px/1.4 "Trebuchet MS", sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+    .footer-row { display: flex; justify-content: space-between; gap: 20px; }
+    @media (max-width: 800px) {
+      .wrap { width: min(100% - 28px, 620px); }
+      .hero { min-height: auto; grid-template-columns: 1fr; gap: 25px; padding: 67px 0 74px; }
+      .tower { min-height: 285px; order: -1; }
+      .spire { height: 260px; width: 180px; }
+      .level:nth-child(1) { height: 15px; } .level:nth-child(2) { height: 27px; } .level:nth-child(3) { height: 44px; } .level:nth-child(4) { height: 59px; } .level:nth-child(5) { height: 56px; }
+      .tower-note { right: 2%; bottom: 0; max-width: 150px; font-size: 13px; }
+      section { padding: 63px 0; }
+      .section-head { display: block; } .section-head p { margin-top: 17px; }
+      .choices, .form-section { grid-template-columns: 1fr; }
+      .choice { min-height: auto; }
+      .questions { grid-template-columns: 1fr; }
+      .footer-row { display: block; } .footer-row span { display: block; margin-top: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <header class="wrap topbar">
+    <a class="mark" href="#top" aria-label="В начало"><span class="sigil" aria-hidden="true"></span><span>Башня Бога</span></a>
+    <a href="#choice">Выбор входа ↓</a>
+  </header>
+
+  <main id="top">
+    <div class="wrap hero">
+      <div>
+        <p class="eyebrow">Материал для игроков · D&D 5e</p>
+        <h1>Башня уже<br><em>ждёт тебя.</em></h1>
+        <p class="lead">Каждый герой приходит сюда своим путём. Одних зовёт сама Башня. Другие проникают туда без разрешения. Третьи знают, чего хотят, и готовы заплатить цену.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#choice">Выбрать свой путь</a>
+          <a class="button" href="#how">Как это работает</a>
+        </div>
+      </div>
+      <div class="tower" aria-hidden="true">
+        <div class="spire"><span class="level"></span><span class="level"></span><span class="level"></span><span class="level"></span><span class="level"></span></div>
+        <p class="tower-note"><strong>Внутри</strong>каждый этаж имеет свои правила, испытания и последствия.</p>
+      </div>
+    </div>
+
+    <section id="choice">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Как ты вошёл?</h2>
+          <p>Выбери один путь. Он задаст начальную мотивацию героя и возможные связи с Башней, но не ограничит класс, расу или мировоззрение.</p>
+        </div>
+        <div class="choices">
+          <article class="choice" data-choice="Призванный Башней" tabindex="0">
+            <span class="choice-no">01 / ПРИЗЫВ</span>
+            <h3>Призванный<br>Башней</h3>
+            <p class="tagline">Знак. Видение. Приглашение, которого ты не просил.</p>
+            <p>Башня обратилась именно к тебе — но ты не знаешь почему. Это может быть обещание, ловушка или ответ на тайну, которую ты носишь с собой.</p>
+            <ul><li>Узнать причину призыва</li><li>Найти источник знака</li><li>Понять, можно ли доверять Башне</li></ul>
+            <button class="button" type="button">Выбрать этот путь</button>
+          </article>
+          <article class="choice" data-choice="Незаконно проникший" tabindex="0">
+            <span class="choice-no">02 / НАРУШЕНИЕ</span>
+            <h3>Незаконно<br>проникший</h3>
+            <p class="tagline">Запрещённая дверь. Чужой ключ. Ни одного разрешения.</p>
+            <p>Ты нашёл путь, который не предназначался для тебя, и вошёл силой, хитростью или обманом. Теперь Башня может считать тебя нарушителем.</p>
+            <ul><li>Скрыться от преследователей</li><li>Найти того, кто не вернулся</li><li>Доказать, что Башня не выбирает хозяев</li></ul>
+            <button class="button" type="button">Выбрать этот путь</button>
+          </article>
+          <article class="choice" data-choice="Вошедший ради цели" tabindex="0">
+            <span class="choice-no">03 / ЦЕЛЬ</span>
+            <h3>Вошедший<br>ради цели</h3>
+            <p class="tagline">Внутри есть то, что тебе нужно. Вопрос только в цене.</p>
+            <p>Ты пришёл за человеком, предметом, знанием, свободой или спасением. Возможно, за твоей спиной стоит контракт — и тот, кто потребует его исполнить.</p>
+            <ul><li>Выполнить обещание или вернуть долг</li><li>Найти необходимое</li><li>Решить, как далеко ты готов зайти</li></ul>
+            <button class="button" type="button">Выбрать этот путь</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="wrap form-section">
+        <div class="form-intro">
+          <p class="eyebrow">Следующий шаг</p>
+          <h2>Оставь<br>свой след.</h2>
+          <p>После выбора ответь на несколько вопросов. Не нужно придумывать всё устройство Башни заранее — детали можно обсудить с ГМ.</p>
+          <p class="small">Твои ответы никуда не отправляются автоматически. Кнопка ниже только собирает их в текст, который можно скопировать и отправить ГМ.</p>
+        </div>
+        <form id="character-form">
+          <label>Твой путь <span class="selected-type" id="selected-type">Выбери вариант выше</span></label>
+          <input type="hidden" id="path" value="">
+          <label for="name">Имя героя<input id="name" name="name" autocomplete="off" placeholder="Как его зовут?"></label>
+          <label for="goal">Личная цель<textarea id="goal" name="goal" placeholder="Чего герой хочет добиться в Башне?"></textarea></label>
+          <label for="loss">Что осталось снаружи?<textarea id="loss" name="loss" placeholder="Что герой оставил или рискует потерять?"></textarea></label>
+          <label for="secret">Тайна героя<textarea id="secret" name="secret" placeholder="Что он не хочет раскрывать другим персонажам? Можно оставить пустым — это только для ГМ."></textarea></label>
+          <div class="form-actions">
+            <button class="button primary" type="submit">Скопировать ответы для ГМ</button>
+            <span class="status" id="status" role="status" aria-live="polite"></span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Можно смешать.</h2>
+          <p>Пути не исключают друг друга. Выбери один основным, а остальные могут стать частью предыстории.</p>
+        </div>
+        <div class="questions">
+          <div class="question"><div class="q">«Меня призвали, но я вошёл незаконно»</div><p>Приглашение пришло слишком поздно — и пришлось искать другой путь.</p></div>
+          <div class="question"><div class="q">«Я пришёл по контракту, но меня звала Башня»</div><p>Тот, кто заключил с тобой сделку, может знать не всю правду.</p></div>
+          <div class="question"><div class="q">«Я проник внутрь, а потом заключил сделку»</div><p>Цена свободы может оказаться частью твоего первого испытания.</p></div>
+          <div class="question"><div class="q">«Мой путь — только мой»</div><p>Это тоже полноценная история. Тебе не обязательно связывать прошлое с другими героями заранее.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row"><span>Башня Бога · самостоятельная история по мотивам Tower of God</span><span>Секреты Башни раскрываются по одному этажу</span></div>
+  </footer>
+
+  <script>
+    (() => {
+      const cards = [...document.querySelectorAll('.choice')];
+      const path = document.querySelector('#path');
+      const selected = document.querySelector('#selected-type');
+      const form = document.querySelector('#character-form');
+      const status = document.querySelector('#status');
+      const fields = ['name', 'goal', 'loss', 'secret'];
+      const saved = JSON.parse(localStorage.getItem('tower-player-form') || '{}');
+
+      fields.forEach(id => {
+        const input = document.getElementById(id);
+        if (saved[id]) input.value = saved[id];
+        input.addEventListener('input', () => save());
+      });
+      if (saved.path) choose(saved.path, false);
+
+      function save() {
+        const data = { path: path.value };
+        fields.forEach(id => data[id] = document.getElementById(id).value);
+        localStorage.setItem('tower-player-form', JSON.stringify(data));
+      }
+      function choose(value, scroll = true) {
+        path.value = value;
+        selected.textContent = value;
+        cards.forEach(card => card.classList.toggle('selected', card.dataset.choice === value));
+        save();
+        if (scroll) document.querySelector('#how').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      cards.forEach(card => {
+        card.addEventListener('click', event => {
+          if (event.target.closest('button') || event.currentTarget === card) choose(card.dataset.choice);
+        });
+        card.addEventListener('keydown', event => {
+          if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); choose(card.dataset.choice); }
+        });
+        card.querySelector('button').addEventListener('click', event => { event.stopPropagation(); choose(card.dataset.choice); });
+      });
+      form.addEventListener('submit', async event => {
+        event.preventDefault();
+        if (!path.value) { status.textContent = 'Сначала выбери путь героя выше.'; return; }
+        const lines = [
+          'Мой персонаж для «Башни Бога»',
+          '',
+          `Путь: ${path.value}`,
+          `Имя героя: ${document.querySelector('#name').value || 'не указано'}`,
+          '',
+          'Личная цель:', document.querySelector('#goal').value || 'не указана',
+          '',
+          'Что осталось снаружи:', document.querySelector('#loss').value || 'не указано',
+          '',
+          'Тайна героя:', document.querySelector('#secret').value || 'не указана'
+        ];
+        const text = lines.join('\n');
+        try {
+          await navigator.clipboard.writeText(text);
+          status.textContent = 'Готово — ответы скопированы в буфер обмена.';
+        } catch {
+          window.prompt('Скопируй ответы для ГМ:', text);
+          status.textContent = 'Открылось окно с готовым текстом.';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
