@@ -89,19 +89,26 @@
     .button.primary:hover, .button.primary:focus-visible { background: var(--gold-soft); }
     .tower {
       position: relative; min-height: 470px; display: grid; place-items: center;
-      overflow: hidden;
+      overflow: hidden; isolation: isolate;
     }
-    .tower::before { content: ""; position: absolute; width: 1px; height: 92%; background: linear-gradient(transparent, var(--gold), transparent); opacity: .28; }
-    .spire { position: relative; width: min(260px, 68%); height: 430px; }
-    .spire .level { position: absolute; left: 50%; transform: translateX(-50%); border: 1px solid rgba(233,189,105,.52); background: linear-gradient(90deg, transparent, rgba(233,189,105,.10), transparent); }
-    .level:nth-child(1) { top: 2%; width: 42px; height: 22px; }
-    .level:nth-child(2) { top: 14%; width: 88px; height: 42px; }
-    .level:nth-child(3) { top: 29%; width: 132px; height: 70px; }
-    .level:nth-child(4) { top: 50%; width: 184px; height: 92px; }
-    .level:nth-child(5) { top: 76%; width: 244px; height: 86px; }
-    .spire::after { content: ""; position: absolute; inset: 0 50%; border-left: 1px solid rgba(133,185,215,.35); box-shadow: 0 0 36px rgba(133,185,215,.12); }
-    .tower-note { position: absolute; right: 0; bottom: 8%; width: min(190px, 30%); max-width: 190px; margin: 0; color: var(--faint); font-size: 15px; line-height: 1.4; }
-    .tower-note strong { display: block; margin-bottom: 8px; color: var(--blue); font: 11px/1.2 "Trebuchet MS", sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+    .tower::before {
+      content: ""; position: absolute; inset: 6% 3%; z-index: -2;
+      border: 1px solid rgba(233,189,105,.28); background: #151017;
+    }
+    .tower::after {
+      content: ""; position: absolute; inset: 6% 3%; z-index: -1; pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(8,11,18,.58), transparent 28%, transparent 72%, rgba(8,11,18,.65)),
+        linear-gradient(0deg, rgba(8,11,18,.55), transparent 28%, rgba(8,11,18,.10) 72%, rgba(8,11,18,.48));
+      box-shadow: inset 0 0 0 1px rgba(233,189,105,.18), inset 0 0 55px rgba(8,11,18,.46);
+    }
+    .tower-image {
+      display: block; width: min(100%, 420px); height: 520px; object-fit: cover;
+      object-position: 50% 22%; opacity: .88; filter: saturate(.72) contrast(1.08) brightness(.68) sepia(.12);
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 7%, #000 90%, transparent 100%);
+      mask-image: linear-gradient(180deg, transparent 0%, #000 7%, #000 90%, transparent 100%);
+    }
+    /* Текст уже встроен в иллюстрацию, поэтому отдельная плашка не дублирует его. */
     section { padding: 86px 0; border-top: 1px solid var(--line); }
     .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 34px; }
     h2 { margin: 0; font-size: clamp(32px, 5vw, 56px); line-height: 1; font-weight: 400; letter-spacing: -.035em; }
@@ -141,10 +148,9 @@
     @media (max-width: 800px) {
       .wrap { width: min(100% - 28px, 620px); }
       .hero { min-height: auto; grid-template-columns: 1fr; gap: 25px; padding: 67px 0 74px; }
-      .tower { min-height: 285px; order: -1; }
-      .spire { height: 260px; width: 180px; }
-      .level:nth-child(1) { height: 15px; } .level:nth-child(2) { height: 27px; } .level:nth-child(3) { height: 44px; } .level:nth-child(4) { height: 59px; } .level:nth-child(5) { height: 56px; }
-      .tower-note { right: 2%; bottom: 0; width: min(150px, 44%); max-width: 150px; font-size: 13px; }
+      .tower { min-height: 380px; order: -1; }
+      .tower::before, .tower::after { inset: 3% 0; }
+      .tower-image { width: 100%; height: 390px; object-position: 50% 18%; opacity: .9; }
       section { padding: 63px 0; }
       .section-head { display: block; } .section-head p { margin-top: 17px; }
       .choices, .form-section { grid-template-columns: 1fr; }
@@ -172,9 +178,8 @@
           <a class="button" href="#how">Как это работает</a>
         </div>
       </div>
-      <div class="tower" aria-hidden="true">
-        <div class="spire"><span class="level"></span><span class="level"></span><span class="level"></span><span class="level"></span><span class="level"></span></div>
-        <p class="tower-note"><strong>Внутри</strong>каждый этаж имеет свои правила, испытания и последствия.</p>
+      <div class="tower">
+        <img class="tower-image" src="assets/tower.jpg" alt="Башня возвышается над городом среди алого неба. На изображении указано, что каждый этаж имеет свои правила, испытания и последствия.">
       </div>
     </div>
 
