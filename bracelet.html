@@ -155,15 +155,26 @@
     .vital .v-note { display: block; margin-top: 4px; color: var(--faint); font-size: 11.5px; }
 
     .rules { margin-top: 22px; display: grid; gap: 9px; }
-    .rule { display: flex; gap: 14px; padding: 12px 16px; border: 1px solid var(--line); background: rgba(10, 20, 30, .35); }
-    .rule .idx {
-      flex: none;
-      padding-top: 2px;
-      color: var(--holo);
-      font: 12px/1.5 "Trebuchet MS", sans-serif;
-      letter-spacing: .08em;
+    .rule { border: 1px solid var(--line); background: rgba(10, 20, 30, .35); }
+    .rule summary {
+      list-style: none;
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      padding: 13px 16px;
+      cursor: pointer;
+      color: var(--holo-bright);
+      font: 13px/1.4 "Trebuchet MS", sans-serif;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      transition: background .2s ease;
     }
-    .rule .t { display: block; color: var(--holo-bright); font: 13px/1.4 "Trebuchet MS", sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+    .rule summary::-webkit-details-marker { display: none; }
+    .rule summary:hover, .rule summary:focus-visible { background: rgba(133, 185, 215, .07); outline: none; }
+    .rule .idx { flex: none; width: 1.7em; color: var(--holo); letter-spacing: .08em; }
+    .rule summary::after { content: "+"; margin-left: auto; color: var(--holo); font-size: 17px; }
+    .rule[open] summary::after { content: "–"; }
+    .rule-body { padding: 2px 18px 15px 18px; }
     .rule p { margin: 5px 0 0; color: var(--muted); font-size: 15px; }
     .rule p b { color: var(--ink); font-weight: 600; }
     .rule p .warn { color: var(--red); }
@@ -240,45 +251,40 @@
       </div>
 
       <div class="rules">
-        <div class="rule">
-          <span class="idx">01</span>
-          <div>
-            <span class="t">Цель</span>
-            <p>Испытание — на выживание. Прошедшим становится тот, у кого к концу есть <b>знак Башни</b>. Знак даётся только за регистрацию в Печати. Все без знака к моменту окончания <b class="warn">погибают</b>.</p>
+        <details class="rule" open>
+          <summary><span class="idx">01</span>Цель</summary>
+          <div class="rule-body">
+<p>Испытание — на выживание. Прошедшим становится тот, у кого к концу есть <b>знак Башни</b>. Знак даётся только за регистрацию в Печати — других путей нет. Мест двести, и Башня не добавит ни одного. Все без знака к моменту окончания <b class="warn">погибают</b>.</p>
           </div>
-        </div>
+        </details>
 
-        <div class="rule">
-          <span class="idx">02</span>
-          <div>
-            <span class="t">Печати</span>
-            <p>Единственный путь к знаку — Печать. На арене <span class="num">50</span> Печатей, каждая даёт <span class="num">4</span> места. В начале они стоят на пьедесталах и слабо светятся синим — свет видно только вблизи, при прямом взгляде. Снятую Печать можно нести, прятать, передавать или отбирать — Башня не ограничивает способы.</p>
+        <details class="rule">
+          <summary><span class="idx">02</span>Печати</summary>
+          <div class="rule-body">
+<p>Единственный путь к знаку — Печать. На арене <span class="num">50</span> Печатей, и каждая даёт <span class="num">4</span> места. В начале все они стоят на метровых пьедесталах и слабо светятся синим — свет видно только вблизи, при прямом взгляде. Стоит снять Печать — пьедестал гаснет навсегда. Дальше с ней можно делать что угодно: нести, прятать, передавать, отнимать силой или хитростью — Башня не ограничивает способы. Если владелец погибает, Печать остаётся на месте смерти; любой может её поднять, и занятые места сохраняются.</p>
           </div>
-        </div>
+        </details>
 
-        <div class="rule">
-          <span class="idx">03</span>
-          <div>
-            <span class="t">Регистрация</span>
-            <p>Держи Печать в руках и продержись <span class="num">90 секунд</span>, не выпуская. Продержался — знак Башни на теле, <b>место занято навсегда</b>. Всё это время Печать ярко светится: окружающие видят её на расстоянии примерно <span class="num">15 метров</span>. Выпустил — <b class="warn">отсчёт начинается заново</b>. Одновременно Печать регистрирует только одного; новый владелец начинает отсчёт с нуля.</p>
+        <details class="rule">
+          <summary><span class="idx">03</span>Регистрация</summary>
+          <div class="rule-body">
+<p>Чтобы Печать зарегистрировала тебя: держи её в руках и продержись <span class="num">90 секунд</span>, не выпуская. Продержался — Печать ставит на тебя <b>знак Башни</b>, и место занято навсегда. Знак виден всем, его нельзя скрыть, снять или передать другому. Всё время регистрации Печать ярко светится без звука — окружающие видят её примерно за <span class="num">15 метров</span>. Выпустил Печать из рук — <b class="warn">отсчёт начинается заново</b>. Одновременно Печать регистрирует только одного; новый владелец начинает отсчёт с нуля.</p>
           </div>
-        </div>
+        </details>
 
-        <div class="rule">
-          <span class="idx">04</span>
-          <div>
-            <span class="t">Конец</span>
-            <p>Испытание кончается, как только заняты все <span class="num">200</span> мест, — немедленно. Иначе оно длится ровно <span class="num">6 часов</span>: распорядитель объявляет конец, и Башня убивает всех без знака. Прошедшие телепортируются в безопасный зал центральной башни, где их ждут награда и путь на второй этаж.</p>
+        <details class="rule">
+          <summary><span class="idx">04</span>Конец</summary>
+          <div class="rule-body">
+<p>Испытание кончается, как только заняты все <span class="num">200</span> мест, — немедленно. Иначе оно длится ровно <span class="num">6 часов</span>: распорядитель объявляет конец голосом на всю арену, и Башня убивает всех без знака. Гибель многих ничего не меняет — испытание завершится только по местам или по времени. Прошедшие телепортируются в безопасный зал центральной башни, где их ждут награда и путь на второй этаж.</p>
           </div>
-        </div>
+        </details>
 
-        <div class="rule">
-          <span class="idx">05</span>
-          <div>
-            <span class="t">Арена</span>
-            <p>За время испытания арена изменится дважды — растительность и видимость. Распорядитель предупредит о каждом изменении заранее.</p>
+        <details class="rule">
+          <summary><span class="idx">05</span>Арена</summary>
+          <div class="rule-body">
+<p>За время испытания арена изменится <b>дважды</b>. Сперва растительность: лес густеет, часть проходов закрывается, часть открывается. Потом видимость: часть леса тонет в тумане, некоторые зоны становятся полностью открытыми. Распорядитель предупредит о каждом изменении заранее. Третьего изменения не будет.</p>
           </div>
-        </div>
+        </details>
       </div>
 
       <div class="sigil-row"><span class="sigil" aria-hidden="true"></span>Правила зафиксированы Башней<span class="sigil" aria-hidden="true"></span></div>
