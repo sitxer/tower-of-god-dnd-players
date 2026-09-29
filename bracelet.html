@@ -56,7 +56,7 @@
       background-image: repeating-linear-gradient(0deg, rgba(133,185,215,.028) 0 1px, transparent 1px 4px);
       z-index: 1;
     }
-    .scene { position: relative; z-index: 2; width: min(880px, calc(100% - 36px)); padding: 46px 0 60px; }
+    .scene { position: relative; z-index: 2; width: min(760px, calc(100% - 36px)); padding: 46px 0 50px; }
 
     .wake {
       text-align: center;
@@ -71,7 +71,7 @@
     .bracelet {
       position: relative;
       margin: 30px auto 0;
-      padding: clamp(24px, 4.5vw, 46px) clamp(20px, 4.5vw, 50px) clamp(26px, 4vw, 40px);
+      padding: clamp(24px, 4.5vw, 44px) clamp(20px, 4.5vw, 48px) clamp(24px, 3.5vw, 36px);
       border: 1px solid rgba(133, 185, 215, .34);
       background:
         linear-gradient(160deg, rgba(133, 185, 215, .085), rgba(133, 185, 215, .015) 46%, rgba(133, 185, 215, .06)),
@@ -107,7 +107,7 @@
       mix-blend-mode: screen;
     }
 
-    .holo-head { text-align: center; border-bottom: 1px solid var(--line); padding-bottom: 22px; }
+    .holo-head { text-align: center; border-bottom: 1px solid var(--line); padding-bottom: 20px; }
     .holo-eyebrow {
       color: var(--holo);
       font: 11px/1.3 "Trebuchet MS", sans-serif;
@@ -116,23 +116,23 @@
     }
     .holo-title {
       margin: 12px 0 0;
-      font-size: clamp(34px, 6.4vw, 58px);
+      font-size: clamp(36px, 6.6vw, 60px);
       line-height: 1.02;
       font-weight: 400;
       letter-spacing: .02em;
       color: var(--holo-bright);
       text-shadow: 0 0 22px rgba(133, 185, 215, .5);
     }
-    .holo-sub { margin: 14px auto 0; max-width: 560px; color: var(--muted); font-size: 15.5px; }
+    .holo-sub { margin: 12px auto 0; max-width: 480px; color: var(--muted); font-size: 15px; }
 
     .vitals {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
-      margin: 26px 0 8px;
+      margin: 24px 0 6px;
     }
     .vital {
-      padding: 14px 10px 12px;
+      padding: 13px 10px 11px;
       border: 1px solid var(--line);
       background: rgba(133, 185, 215, .05);
       text-align: center;
@@ -146,7 +146,7 @@
     .vital .v-value {
       display: block;
       margin-top: 6px;
-      font-size: clamp(22px, 4.4vw, 34px);
+      font-size: clamp(22px, 4.4vw, 32px);
       color: var(--holo-bright);
       letter-spacing: .06em;
       text-shadow: 0 0 14px rgba(133, 185, 215, .45);
@@ -154,69 +154,28 @@
     }
     .vital .v-note { display: block; margin-top: 4px; color: var(--faint); font-size: 11.5px; }
 
-    .rules { margin-top: 26px; display: grid; gap: 12px; }
-    .rule { border: 1px solid var(--line); background: rgba(10, 20, 30, .35); }
-    .rule > summary {
-      list-style: none;
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      padding: 15px 18px;
-      cursor: pointer;
-      color: var(--holo-bright);
-      font: 13px/1.4 "Trebuchet MS", sans-serif;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      transition: background .2s ease;
-    }
-    .rule > summary::-webkit-details-marker { display: none; }
-    .rule > summary:hover, .rule > summary:focus-visible { background: rgba(133, 185, 215, .07); outline: none; }
-    .rule > summary .idx {
+    .rules { margin-top: 22px; display: grid; gap: 9px; }
+    .rule { display: flex; gap: 14px; padding: 12px 16px; border: 1px solid var(--line); background: rgba(10, 20, 30, .35); }
+    .rule .idx {
       flex: none;
-      width: 1.9em;
+      padding-top: 2px;
       color: var(--holo);
-      letter-spacing: .05em;
+      font: 12px/1.5 "Trebuchet MS", sans-serif;
+      letter-spacing: .08em;
     }
-    .rule > summary::after {
-      content: "+";
-      margin-left: auto;
-      color: var(--holo);
-      font-size: 17px;
-      transition: transform .2s ease;
-    }
-    .rule[open] > summary::after { content: "–"; }
-    .rule-body { padding: 2px 20px 18px 20px; color: var(--muted); font-size: 15.5px; }
-    .rule-body ul { margin: 8px 0 0; padding-left: 20px; }
-    .rule-body li { margin-top: 7px; }
-    .rule-body li::marker { color: var(--holo); }
-    .rule-body b, .rule-body strong { color: var(--ink); font-weight: 600; }
-    .rule-body .num { color: var(--holo-bright); font-variant-numeric: tabular-nums; }
-    .rule-body .warn { color: var(--red); }
-    .rule-body .safe { color: var(--green); }
-
-    .noshow {
-      margin-top: 14px;
-      padding: 14px 18px;
-      border: 1px dashed rgba(133, 185, 215, .3);
-      color: var(--faint);
-      font-size: 13.5px;
-    }
-    .noshow .t {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--holo);
-      font: 11px/1.3 "Trebuchet MS", sans-serif;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-    }
+    .rule .t { display: block; color: var(--holo-bright); font: 13px/1.4 "Trebuchet MS", sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+    .rule p { margin: 5px 0 0; color: var(--muted); font-size: 15px; }
+    .rule p b { color: var(--ink); font-weight: 600; }
+    .rule p .warn { color: var(--red); }
+    .rule p .num { color: var(--holo-bright); font-variant-numeric: tabular-nums; }
 
     .sigil-row {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 14px;
-      margin-top: 26px;
-      padding-top: 18px;
+      margin-top: 22px;
+      padding-top: 16px;
       border-top: 1px solid var(--line);
       color: var(--faint);
       font: 10.5px/1.3 "Trebuchet MS", sans-serif;
@@ -226,8 +185,6 @@
     }
     .sigil { flex: none; width: 15px; height: 15px; display: grid; place-items: center; border: 1px solid var(--holo); transform: rotate(45deg); }
     .sigil::after { content: ""; width: 5px; height: 5px; border: 1px solid var(--holo); }
-
-    .footer { margin-top: 26px; color: var(--faint); font-size: 12px; text-align: center; letter-spacing: .04em; }
 
     @keyframes materialize {
       0% { opacity: 0; transform: translateY(14px) scaleY(.97); filter: blur(6px); }
@@ -243,7 +200,6 @@
 
     @media (max-width: 640px) {
       .vitals { grid-template-columns: 1fr; }
-      .rule > summary { flex-wrap: wrap; }
       .bracelet::before, .bracelet::after { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -262,7 +218,7 @@
       <header class="holo-head">
         <p class="holo-eyebrow">Башня · Первый этаж · Испытание</p>
         <h1 class="holo-title">Последние 200</h1>
-        <p class="holo-sub">Лес. Печати. Шесть часов. Этот браслет несъёмный и неуязвимый до конца испытания.</p>
+        <p class="holo-sub">Лес. Печати. Шесть часов. Браслет несъёмный до конца испытания.</p>
       </header>
 
       <div class="vitals">
@@ -284,92 +240,57 @@
       </div>
 
       <div class="rules">
-        <details class="rule" open>
-          <summary><span class="idx">01</span>Цель</summary>
-          <div class="rule-body">
-            <ul>
-              <li>Пройти испытание может лишь тот, кто к его концу носит <b>знак Башни</b> — след успешно завершённой регистрации.</li>
-              <li>Все участники без знака Башни к моменту завершения <b class="warn">погибают</b>.</li>
-              <li>Мест всего <span class="num">200</span> — больше не будет. Башня не спасает и не вмешивается.</li>
-            </ul>
+        <div class="rule">
+          <span class="idx">01</span>
+          <div>
+            <span class="t">Цель</span>
+            <p>Выжить до конца, имея <b>знак Башни</b> — он даётся за регистрацию в Печати. Кто без знака к концу — <b class="warn">погибает</b>.</p>
           </div>
-        </details>
+        </div>
 
-        <details class="rule">
-          <summary><span class="idx">02</span>Печати прохода</summary>
-          <div class="rule-body">
-            <ul>
-              <li>На арене <span class="num">50</span> небольших переносных Печатей. В начале все лежат на пьедесталах высотой в метр: пока Печать на месте, пьедестал слабо светится синим — заметно только при прямом взгляде.</li>
-              <li>Каждая Печать даёт <span class="num">4</span> места. Итого <span class="num">200</span>.</li>
-              <li>Снятая Печать перестаёт светиться, но сохраняет способность регистрировать. Её можно <b>носить, прятать, передавать, отнимать, красть</b> — правила Башни не ограничивают способы.</li>
-              <li>Если владелец Печати погибает, Печать остаётся на месте смерти. Любой может её взять: занятые места и погасшие ромбы сохраняются, новый владелец работает с оставшимися.</li>
-              <li>Пьедесталы распределены равномерно: на полянах, в чаще, у ручьёв, на холмах. Направление к ближайшей не сообщается — ищите по следам и разведке.</li>
-            </ul>
+        <div class="rule">
+          <span class="idx">02</span>
+          <div>
+            <span class="t">Печати</span>
+            <p><span class="num">50</span> Печатей на пьедесталах по арене, <span class="num">4</span> места в каждой. Снятую можно нести, прятать, передавать, отбирать.</p>
           </div>
-        </details>
+        </div>
 
-        <details class="rule">
-          <summary><span class="idx">03</span>Регистрация</summary>
-          <div class="rule-body">
-            <ul>
-              <li>Чтобы занять место, нужно <span class="num">3</span> <b>последовательных раунда</b> держать Печать в руках и остаться живым до конца третьего.</li>
-              <li>При начале регистрации Печать ярко светится без звука — свечение видно только вблизи, примерно в пределах одной боевой сцены.</li>
-              <li>Перемещаться можно свободно, но Печать должна оставаться <b>в руках</b>. Выпустили из рук — регистрация <b class="warn">полностью сбрасывается</b>.</li>
-              <li>Добровольная передача Печати разрешена, но регистрация получившего начинается заново. Одновременно Печать регистрирует только одного; остальные могут защищать регистрирующегося.</li>
-              <li>В конце третьего раунда Печать наносит <b>знак Башни</b>: он появляется на теле, виден всем, постоянен и не может быть удалён, скрыт или передан.</li>
-              <li>Четыре ромба на Печати затухают по одному за каждую регистрацию. После четырёх Печать не регистрирует, но остаётся у последнего прошедшего как доказательство.</li>
-              <li>Печать регистрирует любого участника — независимо от команды и прошлых действий.</li>
-            </ul>
+        <div class="rule">
+          <span class="idx">03</span>
+          <div>
+            <span class="t">Регистрация</span>
+            <p>Держи Печать в руках <span class="num">3</span> раунда подряд. Выпустил — <b class="warn">сначала</b>. Прошёл — знак Башни на теле, <b>навсегда</b>. Регистрирующаяся Печать светится — тебя видно.</p>
           </div>
-        </details>
+        </div>
 
-        <details class="rule">
-          <summary><span class="idx">04</span>Смерть и воскрешение</summary>
-          <div class="rule-body">
-            <ul>
-              <li>Погибшего можно воскресить по обычным правилам D&D — но только <b>до завершения испытания</b>.</li>
-              <li>Занятое место <b>не освобождается</b> ни при смерти, ни при воскрешении.</li>
-              <li>Воскрешённый возвращается к жизни на месте смерти; его знак Башни и место сохраняются.</li>
-              <li>Если смерть случилась во время регистрации — регистрация сбрасывается, воскрешённый начинает её заново.</li>
-              <li>Зарегистрированный считается прошедшим, только если <b class="safe">жив</b> в момент завершения испытания.</li>
-            </ul>
+        <div class="rule">
+          <span class="idx">04</span>
+          <div>
+            <span class="t">Смерть</span>
+            <p>Умерших можно воскресить до конца испытания. Занятое место не освобождается.</p>
           </div>
-        </details>
+        </div>
 
-        <details class="rule">
-          <summary><span class="idx">05</span>Конец испытания</summary>
-          <div class="rule-body">
-            <ul>
-              <li><b>Досрочный конец:</b> все <span class="num">200</span> мест заняты — испытание завершается немедленно. С этого мгновения воскрешение погибших невозможно. Прошли все живые со знаком Башни.</li>
-              <li><b>Конец по времени:</b> по истечении <span class="num">6:00:00</span> распорядитель объявляет конец голосом на всю арену, браслеты подтверждают сигнал — и Башня убивает всех без знака Башни.</li>
-              <li><b>Гибель 100 незарегистрированных участников</b> сама по себе ничего не завершает: испытание длится до заполнения мест или до конца отсчёта.</li>
-              <li>Прошедшие телепортируются в безопасный зал центральной башни. После фиксации результата браслет и Печать исчезают; распорядитель выдаёт металлический жетон прохождения и открывает путь на второй этаж — 10 лифтов, каждый прибывает в своё место.</li>
-            </ul>
+        <div class="rule">
+          <span class="idx">05</span>
+          <div>
+            <span class="t">Конец</span>
+            <p>Заняты все <span class="num">200</span> мест — испытание окончено сразу. Иначе через <span class="num">6:00:00</span> Башня убивает всех без знака. Останешься — пройдёшь.</p>
           </div>
-        </details>
+        </div>
 
-        <details class="rule">
-          <summary><span class="idx">06</span>Изменения арены</summary>
-          <div class="rule-body">
-            <ul>
-              <li>За время испытания арена изменится <b>дважды</b>. Третьего изменения не будет.</li>
-              <li>Распорядитель объявляет каждое изменение заранее и даёт короткое предупреждение.</li>
-              <li>Первое изменение меняет растительность: лес густеет, часть проходов закрывается, часть открывается.</li>
-              <li>Второе меняет видимость: часть леса тонет в тумане, некоторые зоны становятся полностью открытыми.</li>
-            </ul>
+        <div class="rule">
+          <span class="idx">06</span>
+          <div>
+            <span class="t">Арена</span>
+            <p>Изменится дважды. Распорядитель предупредит заранее.</p>
           </div>
-        </details>
-      </div>
-
-      <div class="noshow">
-        <span class="t">Браслет не показывает</span>
-        Сколько участников уже зарегистрировано · сколько мест свободно · состояние конкретной Печати · направление к ближайшей Печати.
+        </div>
       </div>
 
       <div class="sigil-row"><span class="sigil" aria-hidden="true"></span>Правила зафиксированы Башней<span class="sigil" aria-hidden="true"></span></div>
     </article>
-
-    <p class="footer">Проекция голографической карточки браслета · испытание «Последние 200» · первый этаж, Долина потерь</p>
   </div>
 </body>
 </html>
